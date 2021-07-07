@@ -88,11 +88,11 @@ body {
 button {
     border-radius: 30px 30px;
     border: none;
-    display: block;
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-    cursor: pointer;
+    cursor: default;
 }
 
 textarea {
