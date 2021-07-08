@@ -1,0 +1,229 @@
+/* Variables */
+
+:root {
+    --main-feel-color: #1e1af3;
+    --darker-offset-color: #1e1af3;
+    --dark-color: #eee6e9;
+    --box-shadow-color: rgba(207, 26, 26, 0.56);
+    --dark-hover: #1e1af3;
+}
+
+*/
+/* Global */
+
+* {
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: white;
+    text-align: center;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--dark-hover);
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+}
+
+h1 {
+    font-size: 5em;
+    margin: 10px 0 0 0;
+    color: white;
+}
+
+header {
+    padding: 20px;
+    background: var(--main-feel-color);
+    padding-bottom: 1em;
+}
+
+ol,
+li {
+    padding: 0 0 5px 0.75em;
+    margin-left: 1em;
+    text-align: left;
+    font-size: 1.11em;
+}
+
+h2 {
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    background: var(--darker-offset-color);
+}
+
+
+
+
+/* Classes */
+
+.button {
+    margin-top: 0.85em;
+    margin-bottom: 1.30em;
+    height: 3em;
+    width: 7em;
+    background-color: var(--dark-color);
+    font-size: 2em;
+    border: 0;
+    outline: solid 0px var(--main-feel-color);
+    transition: outline 0.3s linear, background-color 1.6s linear;
+}
+
+.button-submit {
+    margin-top: 0.1em;
+    margin-left: 1em;
+    height: 2em;
+    width: 5em;
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+.restart-quiz,
+.clear-scores {
+    height: 2em;
+    font-size: 1em;
+    margin: 1.25em 10px 0 10px;
+}
+
+.user-buttons {
+    display: inline-block;
+}
+
+.button:hover {
+    outline-width: 10px;
+    /*background-color: var(--dark-hover);*/
+    cursor: pointer;
+}
+
+
+.question-container,
+.score-container,
+.game-over-container,
+.high-scores,
+.user-buttons,
+.user-feedback {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-over-content h2,
+.user-feedback {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.time-score,
+.final-score,
+.user-feedback {
+    font-size: 30px;
+    color: yellow;
+}
+
+.user-entry {
+    margin: 1.5em 0 1.5em 0;
+}
+
+.user-choice {
+    padding: 5px 10px 5px 10px;
+    transition: transform .2s;
+}
+
+.user-choice:hover {
+    background-color: #e8eeeb;
+    border-radius: 5px;
+    border: 2px solid var(--main-feel-color);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.initial-entry {
+    width: 70px;
+    color: black;
+    font-size: 14px;
+    margin-top: 1.25em;
+}
+
+.hide-element {
+    display: none;
+}
+
+
+/* Table https://www.w3schools.com/css/tryit.asp?filename=trycss_table_fancy */
+
+.high-scores {
+    border-collapse: collapse;
+    width: 30%;
+    background-color: var(--dark-color);
+    margin-top: 1.5em;
+}
+
+.high-scores td,
+.high-scores td {
+    border: 0;
+    padding: 8px;
+}
+
+/*.high-scores tr:hover {
+    background-color: var(--dark-hover);
+}
+*/
+.high-scores td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: var(--main-feel-color);
+    color: white;
+}
+
+
+/* Media Queries for Mobile Screens */
+
+@media screen and (max-width: 768px) {
+    img {
+        width: 65%;
+        height: auto;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    h2 {
+        font-size: 15px;
+    }
+    ol,
+    li {
+        font-size: 0.9em;
+        margin-left: 0.5em;
+    }
+    .question-container {
+        width: 95%;
+    }
+    .user-choice:hover {
+        font-size: 13px;
+        cursor: pointer;
+    }
+    .high-scores {
+        width: 100%;
+    }
+    .game-over-content h1 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .user-choice:hover {
+        font-size: 13px;
+        border-radius: 0;
+        background-color: initial;
+        border: 0;
+        cursor: pointer;
+    }
+}
