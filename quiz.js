@@ -1,4 +1,15 @@
-//An array of multiple choice questions/answers objects, this would come from a DB or API typically
+//	Assignment/Homework-3: Code Quiz
+//	Author: Taoufik Ammi
+//	Date: 07/07/2021 
+//	Course: UNC Coding BootCamp
+// Javascript File
+
+
+// Arrays Settings Section.  
+// Objects Settings Section 
+// Functions Settings Section 
+
+// question1 function Settings Section. 
 let questions = [{
     "question": "Which symbol is used for comments in Javascript?",
     "answers": [{
@@ -19,6 +30,7 @@ let questions = [{
         }
     ]
 },
+// question2 function Settings Section. 
 {
     "question": "Which company developed JavaScript?",
     "answers": [{
@@ -40,6 +52,7 @@ let questions = [{
 
     ]
 },
+// question3 function Settings Section. 
 {
     "question": " It is possible to break JavaScript Code into several lines",
     "answers": [{
@@ -52,6 +65,7 @@ let questions = [{
         }
     ]
 },
+// question4 function Settings Section. 
 {
     "question": "What does NULL refer to in Javascript",
     "answers": [{
@@ -72,6 +86,7 @@ let questions = [{
         }
     ]
 },
+// question4 function Settings Section. 
 {
     "question": "What is the use of a Typeof operator in Javascript",
     "answers": [{
@@ -94,7 +109,7 @@ let questions = [{
 }
 ];
 
-//get DOM element objects needed
+//get DOM element objects Settings Section. 
 var startButton = document.querySelector(".button");
 var question = document.querySelector(".question");
 var questionContainer = document.querySelector(".question-container");
@@ -113,7 +128,7 @@ var clearScoreButton = document.querySelector(".clear-scores");
 var restartQuizButton = document.querySelector(".restart-quiz");
 
 
-// Game Variables
+// Game Variables Settings Section
 var timeScore = 60;
 var answerWaitTime = 1000;
 var scoreBoardSave = {
@@ -121,17 +136,17 @@ score: "",
 initials: ""
 };
 
-//get random array for question display
+// Random array for question display Settings Section
 var randomOrder = getRandomIntArray(0, questions.length);
 
-//add event listeners to each answer element
+// Event listeners to each answer element
 for (let i = 0; i < answers.length; i++) {
 answers[i].addEventListener("click", function() {
-    //show feedback
+    
     userFeedback.classList.remove('hide-element');
-    //get whether correct
+    
     var isCorrect = answers[i].getAttribute("data-boolean");
-    //convert string to boolean
+    
     var isCorrectBool = (isCorrect.toLowerCase() === 'true')
     if (isCorrectBool) {
         userFeedback.innerHTML = "Correct";
@@ -140,7 +155,7 @@ answers[i].addEventListener("click", function() {
         userFeedback.innerHTML = "Incorrect";
     }
     givenAnswers.classList.add('hide-element');
-    //add timeout so user can see answer feedback
+  
     setTimeout(function() {
         userFeedback.classList.add('hide-element');
         givenAnswers.classList.remove('hide-element');
@@ -149,80 +164,80 @@ answers[i].addEventListener("click", function() {
 });
 }
 
-//start quiz button event listener
+// Start quiz button event listener Settings Section.
 startButton.addEventListener("click", function() {
-//hide quiz button, show quiz container HTML
+// Hide quiz button, show quiz container HTML Settings Section.
 startButton.classList.add('hide-element');
 questionContainer.classList.remove('hide-element');
-//start score/timer
+// Start score/timer Settings Section.
 scoreTimerCountdown();
-//execute the quiz in random order
+// Execute the quiz in random order Settings Section.
 getNextQuestionOrEnd();
 });
 
-//submit initials/score button
+// Submit initials and score button Settings Section.
 submitButton.addEventListener("click", function() {
-//save final score to game (if not grab final-score timer value)
+//  final score to game Settings Section. 
 scoreBoardSave.score = finalScore.innerHTML;
-//save initials
+//  Initials Settings Section.
 scoreBoardSave.initials = initialEntry.value;
-//save to local storage
+// Save score to local storage Settings Section.
 addLocalStorageEntry(scoreBoardSave);
-//render on score card
+
 generateTable();
-//hide input fields
+
 userEntry.classList.add('hide-element');
 finalScore.parentElement.classList.add('hide-element');
 });
 
-//clear local storage entry
+// local storage entry to be cleared Settings Section. 
 clearScoreButton.addEventListener("click", function() {
 existingEntries = [];
 localStorage.setItem("allScoreEntries", JSON.stringify(existingEntries));
 generateTable();
 });
 
-//restart game
+// game restart Settings Section.
 restartQuizButton.addEventListener("click", function() {
 window.open("index.html");
 });
 
-//generate populated table
+// populated table Settings Section.
 function generateTable() {
-//clear current render
 highScoreBoard.innerHTML = "<tr><th>Initials</th><th>Score</th></tr>";
-//get parsed array of score objects
+
 var allSavedScores = JSON.parse(localStorage.getItem("allScoreEntries"));
-//generate each score
+
 for (let i = 0; i < allSavedScores.length; i++) {
     const element = allSavedScores[i];
     highScoreBoard.innerHTML += "<tr><td>" + element.initials + "</td><td>" + element.score + "</td></tr>";
 }
 }
 
-//pull array from local storage and add object entries to it
-//https://stackoverflow.com/questions/19635077/adding-objects-to-array-in-localstorage
+// array pull from local storage Settings Section
+
+
 function addLocalStorageEntry(scoreBoardObject) {
-// Parse any JSON previously stored in allEntries
+// JSON Parsed and previously stored in allEntries
 var existingEntries = JSON.parse(localStorage.getItem("allScoreEntries"));
 if (existingEntries == null) {
     existingEntries = [];
 }
 localStorage.setItem("userEntry", JSON.stringify(scoreBoardObject));
-//add object to array
+
 existingEntries.push(scoreBoardObject);
-//sort array before adding to local storage - https://stackoverflow.com/questions/979256/sorting-an-array-of-objects-by-property-values
+
 existingEntries.sort(function(b, a) {
     return parseFloat(a.score) - parseFloat(b.score);
 });
-// Save allEntries back to local storage
+
 localStorage.setItem("allScoreEntries", JSON.stringify(existingEntries));
 };
 
-//Get an array of random unique integers between min and max
+
 function getRandomIntArray(min, max) {
 var returnSet = new Set();
-//There may be a more efficient way to do this as it will run potentially more than max variable times
+
 while (returnSet.size < max) {
     var randomInt = Math.floor(Math.random() * (max - min) + min);
     returnSet.add(randomInt);
@@ -230,30 +245,30 @@ while (returnSet.size < max) {
 return Array.from(returnSet);
 }
 
-//Countdown Timer
+// Timer Settings Section.
 function scoreTimerCountdown() {
-//set score 1st for better responsiveness then initiate countdown
+
 score.innerHTML = timeScore;
 var countDown = setInterval(function() {
     timeScore--;
     score.innerHTML = timeScore;
     if (timeScore <= 0) {
-        //setInterval() method returns an ID which can be used by the clearInterval() method to stop the interval.
+       
         clearInterval(countDown);
         getNextQuestionOrEnd();
     }
 }, 1000);
 }
-
+//Next question function Settings Section.
 function getNextQuestionOrEnd() {
-//check if there are remaining random array values
+
 if (randomOrder.length !== 0 && timeScore > 0) {
-    //get last item and remove it from array
+    
     var randomSelected = parseInt(randomOrder.pop());
-    //add question to DOM
+    
     question.innerHTML = questions[randomSelected].question;
     for (let i = 0; i < answers.length; i++) {
-        //if there are more answers than HTML elements to use them, hide the HTML element and don't populate anything
+       
         if (typeof questions[randomSelected].answers[i] === 'undefined') {
             answers[i].parentElement.classList.add('hide-element');
         } else {
@@ -262,12 +277,11 @@ if (randomOrder.length !== 0 && timeScore > 0) {
             answers[i].parentElement.classList.remove('hide-element');
         }
     }
-} else { //else there are no more questions
-    //if the final score goes below zero set to zero
+} else { 
     if (timeScore < 0) {
         timeScore = 0;
     }
-    // show game over screen and set final score
+    // Final Score Settings Section. 
     finalScore.innerHTML = timeScore;
     questionContainer.classList.add('hide-element');
     scoreContainer.classList.add('hide-element');
